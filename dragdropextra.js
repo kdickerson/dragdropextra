@@ -5,7 +5,7 @@
 //      - Fixed bug where 2nd drag on an element in IE would result in funny placement of the
 //        element. [shammond42]
 // v0.4 release
-//		- Fixed issue with dragging and dropping in IE7 due to an exception being thrown and not properly reseting in FinishDrag.
+//  	- Fixed issue with dragging and dropping in IE7 due to an exception being thrown and not properly reseting in FinishDrag.
 // v0.3 release
 //	  - Fixed bug found by Phillip Sauerbeck psauerbeck@gmail. Tests added based on Phillip's efforts.
 // v0.2 release
@@ -194,15 +194,16 @@ Draggable.prototype.finishDrag = function(event, success) {
     this.delta = d;
   }
 
-  if (this.options.zindex) {this.element.style.zIndex = this.originalZ;}
-  
   if (this.options.endeffect) {this.options.endeffect(this.element);}
 
   if (this.options.superghosting) {
     body = document.getElementsByTagName("body")[0];
     Element.remove(this.element);
+    this.element = this._clone;
     new Draggable(this._clone, this.options);
   }
+
+  if (this.options.zindex) {this.element.style.zIndex = this.originalZ;}
 
   Draggables.deactivate(this);
   Droppables.reset();
