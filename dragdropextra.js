@@ -43,7 +43,7 @@ Draggable.prototype.startDrag = function(event) {
   if (this.options.superghosting) {
     Position.prepare();
     var pointer = [Event.pointerX(event), Event.pointerY(event)];
-    body = document.getElementsByTagName("body")[0];
+    var body = document.getElementsByTagName("body")[0];
     var me = this.element;
     this._clone = me.cloneNode(true);
     if (Prototype.Browser.IE) {
@@ -197,7 +197,7 @@ Draggable.prototype.finishDrag = function(event, success) {
   if (this.options.endeffect) {this.options.endeffect(this.element);}
 
   if (this.options.superghosting) {
-    body = document.getElementsByTagName("body")[0];
+    var body = document.getElementsByTagName("body")[0];
     Element.remove(this.element);
     this.element = this._clone;
     new Draggable(this._clone, this.options);
