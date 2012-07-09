@@ -148,10 +148,10 @@ Draggable.prototype.initDrag = function(event) {
 };
 
 Droppables.isAffected = function(point, element, drop) {
-	"use strict";
+  "use strict";
   Position.prepare();
-	var positioned_within = Position.withinIncludingScrolloffsets(drop.element, point[0], point[1]);
-	return ((drop.element !== element) &&
+  var positioned_within = Position.withinIncludingScrolloffsets(drop.element, point[0], point[1]);
+  return ((drop.element !== element) &&
       (!drop._containers || this.isContained(element, drop)) &&
       (!drop.accept || Element.classNames(element).detect(function(v) { return drop.accept.include(v); } )) &&
       positioned_within);
@@ -198,11 +198,11 @@ Draggable.prototype.finishDrag = function(event, success) {
   
   if (this.options.endeffect) {this.options.endeffect(this.element);}
 
-	if (this.options.superghosting) {
-		body = document.getElementsByTagName("body")[0];
-	  Element.remove(this.element);
-		new Draggable(this._clone, this.options);
-	}
+  if (this.options.superghosting) {
+    body = document.getElementsByTagName("body")[0];
+    Element.remove(this.element);
+    new Draggable(this._clone, this.options);
+  }
 
   Draggables.deactivate(this);
   Droppables.reset();
